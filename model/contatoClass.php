@@ -20,15 +20,55 @@
         public function __construct(){
 
         }
-
-        public function __get($att){
-            // Getter dos atributos
-            return $this->att;
+        
+        //Setters
+        public function setNome($att){
+            $this->nome = $att;
         }
 
-        public function __set($att, $value){
-            // Setter dos atributos
-            $this->att = $value;
+        public function setTelefone($att){
+            $this->telefone = $att;
+        }
+
+        public function setCelular($att){
+            $this->celular = $att;
+        }
+
+        public function setEmail($att){
+            $this->email = $att;
+        }
+
+        public function setDatanascimento($att){
+            $this->data_nascimento = date("Y-m-d", strtotime($att));
+        }
+
+        public function setObservacao($att){
+            $this->obs = $att;
+        }
+        
+        //Getters
+        public function getNome(){
+            return $this->nome;
+        }
+
+        public function getTelefone(){
+            return $this->telefone;
+        }
+
+        public function getCelular(){
+            return $this->celular;
+        }
+
+        public function getEmail(){
+            return $this->email;
+        }
+
+        public function getDatanascimento(){
+            return $this->data_nascimento;
+        }
+
+        public function getObservacao(){
+            return $this->obs;
         }
     }
 ?>
