@@ -39,7 +39,12 @@
         }
 
         public function setDatanascimento($att){
-            $this->data_nascimento = date("Y-m-d", strtotime($att));
+
+            if(strpos($att, "-")){
+                $this->data_nascimento = date("d/m/Y", strtotime($att));
+            }else{
+                $this->data_nascimento = date("Y-m-d", strtotime($att));
+            }
         }
 
         public function setObservacao($att){
@@ -69,6 +74,19 @@
 
         public function getObservacao(){
             return $this->obs;
+        }
+
+       
+        public function getCodigo()
+        {
+                return $this->codigo;
+        }
+
+        public function setCodigo($codigo)
+        {
+                $this->codigo = $codigo;
+
+                return $this;
         }
     }
 ?>

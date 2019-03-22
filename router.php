@@ -19,22 +19,29 @@
 
         switch($controller){
             case 'CONTATOS':
+                //Import da classe
+                require_once('controller/controllerContato.php');
+                            
+                //Instânciando o objeto no PHP
+                $controllerContato = new ControllerContato; 
+
                 switch($modo){
                     case 'INSERIR':
-                        require_once('controller/controllerContato.php');
-                        
-                        //Instânciando o objeto no PHP
-                        $controllerContato = new ControllerContato; 
-                        
                         //Utilizando um método que está na classe ControllerContato
                         $controllerContato -> inserirContato();
                         break;
                     case 'ATUALIZAR':
-                        echo('100% atualizado');
+                        $controllerContato -> atualizarContato();
                         break;
                     case 'EXCLUIR':
-
+                        //Utilizando um método que está na classe ControllerContato
+                        $controllerContato -> excluirContato();
+                        break;
                     case 'BUSCAR':
+                        $contato = $controllerContato -> buscarContato();
+                        require_once('index.php');
+
+                        break;
                 }
                 break;
             case 'PRODUTOS':

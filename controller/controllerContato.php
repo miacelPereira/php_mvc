@@ -53,10 +53,50 @@
     
         public function excluirContato(){
             //Excluir contato
+            $id = $_GET['id'];
+
+            //Instância da classe contatoDAO
+            $contatoDAO = new ContatoDAO();
+
+            //Passando o contato para a classe DAO para ela realizar o insert no banco
+            $contatoDAO->delete($id);
+
         }
     
         public function atualizarContato(){
             //Atualizar contato
+
+            $id = $_GET['id'];
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $nome = $_POST['txtnome'];
+                $telefone = $_POST['txttelefone'];
+                $celular = $_POST['txtcelular'];
+                $email = $_POST['txtemail'];
+                $datanascimento = $_POST['txtdatanasc'];
+                $observacao = $_POST['txtobs'];
+
+                //Instância da classe de contato
+                $contato = new Contato();
+
+                // Settando os valores
+                $contato->setCodigo($id);
+                $contato->setNome($nome);
+                $contato->setTelefone($telefone);
+                $contato->setCelular($celular);
+                $contato->setEmail($email);
+                $contato->setDatanascimento($datanascimento);
+                $contato->setObservacao($observacao);
+
+                //Instância da classe contatoDAO
+                $contatoDAO = new ContatoDAO();
+
+                //Passando o contato para a classe DAO para ela realizar o insert no banco
+                $contatoDAO->update($contato);
+                
+            }else{
+                echo('Erro em alterar os dados!</br> Para o técnico: Valores não foram passados para a controller ou passados de forma incorreta.');
+            }
+
         }
     
         public function listarContatos(){
@@ -71,6 +111,13 @@
     
         public function buscarContato(){
             //Buscarcontato
+            $id = $_GET['id'];
+
+            //Instância da classe contatoDAO
+            $contatoDAO = new ContatoDAO();
+
+            //Passando o contato para a classe DAO para ela realizar o select no banco
+            return $contatoDAO->selectById($id);
         }
     }
 
